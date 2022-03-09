@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function InProgress({course}) {
+function CourseCard({course}) {
   console.log(course);
   const classes = useStyles(); 
 
@@ -118,5 +118,9 @@ function InProgress({course}) {
     </Card>
   );
 }
+CourseCard.propTypes = {
+    course: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+};
 
-export default InProgress;
+export default CourseCard;

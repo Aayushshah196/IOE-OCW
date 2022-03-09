@@ -3,6 +3,10 @@ import {
   PAGE_LOAD_SUCCESS,
   PAGE_LOAD_FAIL,
 
+  MYCOURSE_LOAD_REQUEST,
+  MYCOURSE_LOAD_SUCCESS,
+  MYCOURSE_LOAD_FAIL,
+
   COURSE_DETAIL_REQUEST,
   COURSE_DETAIL_SUCCESS,
   COURSE_DETAIL_FAIL,
@@ -17,6 +21,7 @@ import {
 
 } from "../constants/pageConstants";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function setHeader(){
   // console.log(JSON.parse(localStorage.getItem('userInfo'))['id']);
@@ -35,6 +40,29 @@ export const pageLoadAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PAGE_LOAD_FAIL,
+      payload:
+        error.response && error.response.data
+          ? {message: false}
+          : {message: false},
+    });
+  }
+};
+
+export const getCourseAction = () => async (dispatch) => {
+  try {
+    dispatch({ type: MYCOURSE_LOAD_REQUEST });
+    const uid=JSON.parse(localStorage.getItem('userInfo'))['id'];
+    const { data } = await axios.get( `${process.env.REACT_APP_URL}/api/mycourse/${uid}?format=json`);
+    
+    console.log(uid);
+    console.log(data);
+    dispatch({
+      type: MYCOURSE_LOAD_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: MYCOURSE_LOAD_FAIL,
       payload:
         error.response && error.response.data
           ? {message: false}
@@ -85,7 +113,7 @@ export const CourseEnrollAction = ( userId, courseId) => async (dispatch, getSta
       type: ENROLLMENT_SUCCESS,
       payload: data,
     });
-    window.location.assign('/');
+    window.location.assign(`/course/${userId}/${courseId}`);
   } catch (error) {
     
     console.log(error);

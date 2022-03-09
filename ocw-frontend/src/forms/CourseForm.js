@@ -28,17 +28,17 @@ export default function CourseForm() {
 
     const [value, setValue] = React.useState(null);
 
-    const location = useLocation();
-    const {uid} = location.state;
-    const dispatch = useDispatch();
-    const courseDetail = useSelector((state) => state.courseDetail);
-    const { error, loading, courseData } = courseDetail;
+    // const location = useLocation();
+    // const {uid} = location.state;
+    // const dispatch = useDispatch();
+    // const courseDetail = useSelector((state) => state.courseDetail);
+    // const { error, loading, courseData } = courseDetail;
 
     
 
-    useEffect(() => {
-      dispatch(CourseDetailAction(uid));
-    }, [dispatch, uid]);
+    // useEffect(() => {
+    //   dispatch(CourseDetailAction(uid));
+    // }, [dispatch, uid]);
 
 
     return (
@@ -46,11 +46,11 @@ export default function CourseForm() {
       <Typography variant="h6" gutterBottom>
         Course Details
       </Typography>
-      { loading ? (
+      {/* { loading ? (
           <Loader loading={loading} />
       ) : error ? (
           <h1>Error on loading the courses</h1> 
-      ) : (
+      ) : ( */}
       <Grid container spacing={3}>
         <Grid item xs={12}>
           
@@ -75,7 +75,7 @@ export default function CourseForm() {
                   fullWidth
                   autoComplete="summary of course"
                   variant="standard"
-                  default={courseData?.summary}
+                  // default={courseData?.summary}
                   {...register('summary')}
                 />
           
@@ -221,7 +221,7 @@ export default function CourseForm() {
         Submit
       </Button>
       </Grid>
-      )}
+      {/* )} */}
       </div>
   );
 }

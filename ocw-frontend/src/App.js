@@ -33,11 +33,12 @@ function App(){
         <Routes>
             <Route path="/search" element={<SearchNotFound/>} />
             <Route path="/test" element={<SearchPage/>} />
-            <Route path="/dash" element={<Dashboard/>} />
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path="account/*" element={<Accounts />} />
             <Route path="/home" element={<IndexPage />} />
             <Route path="/course" element={<Courses />} />
+            
+            <Route path="/hull" element={<CourseForm />} />
             <Route path="/course/:courseId" element={<CourseDetails />} />
             <Route path="/course/:courseId/:lessonId" element={<CourseView />} />
             <Route path="/course/:courseId/edit" element={<CourseForm />} />

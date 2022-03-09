@@ -58,6 +58,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 export default function CourseView() {
+  const youtubeID = "PH5qlHo3TxE"
   const [expanded, setExpanded] = React.useState('panel1');
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -69,10 +70,20 @@ export default function CourseView() {
           <Grid container spacing={0}>
             <Grid item xs={8.5}>
             <Box component="main" sx={{ flexGrow: 1, bgcolor: "background.default"}}>
-          <Box sx={{bgcolor:"#474342",p:"1%"}}>
+          {/* <Box sx={{bgcolor:"#474342",p:"1%"}}>
           <Video title="Chapter 1" src="https://media.istockphoto.com/videos/abstract-technology-background-video-id1264206256"/>
+        </Box> */}
+        <Box>
+        <iframe className='video'
+                width="560"
+                height="315"
+                title='Youtube player'
+                allowfullscreen="allowfullscreen"
+                sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
+                src={`https://youtube.com/embed/${youtubeID}?autoplay=0`}>
+        </iframe>
         </Box>
-        
+                
         <Box padding="1% 0% 0% 1.5%">
             <Divider/>
             <Typography variant="h4">

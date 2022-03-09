@@ -21,6 +21,7 @@ import { LogoDev } from '@mui/icons-material';
 import tulogo from '../../static/images/tulogo.png';
 import { Link }  from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'sticky',
@@ -63,6 +64,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+  
+  let navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [loginStatus, setLoginStatus] = React.useState(false);
@@ -72,7 +75,6 @@ export default function PrimarySearchAppBar() {
 
   React.useEffect(() => {
     setLoginStatus(userInfo?.access);
-    console.log(loginStatus);
   }, []);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -92,7 +94,8 @@ export default function PrimarySearchAppBar() {
   };
 
   const handleSignout = () => {
-
+    setLoginStatus(false);
+    navigate("/account/signup");
   }
 
   const handleMobileMenuOpen = (event) => {
@@ -118,12 +121,14 @@ export default function PrimarySearchAppBar() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleSignout}>
-        <Link to="/account/logout" style={{ textDecoration: 'none'}}>
           Log out
-        </Link>
       </MenuItem>
     </Menu>
   );
+
+  const search = (e) => {
+    console.log(e.target.value);
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -142,14 +147,20 @@ export default function PrimarySearchAppBar() {
             IOE OCW
           </Typography>
           </div>
-          <Search on={(e)=>{console.log("search")}}>
+          <Search onSubmit={(e)=>{console.log("search")}}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
+
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              
             />
+            <Button type="submit" style={{ color: "white" }}
+            onClick={(e)=>{search(e)}}>
+              Search
+            </Button>
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           
@@ -169,8 +180,8 @@ export default function PrimarySearchAppBar() {
           </Box>
           ): (
             <Box>
-              <Button color="inherit" onClick={()=>{window.location.assign("account/signin")}}>Sign in</Button>
-              <Button color="inherit" onClick={()=>{window.location.assign("account/signup")}}>Sign up</Button>
+              <Button color="inherit" onClick={()=>{navigate("/account/signin")}}>Sign in</Button>
+              <Button color="inherit" onClick={()=>{navigate("/account/signup")}}>Sign up</Button>
             </Box>
           ) 
 }

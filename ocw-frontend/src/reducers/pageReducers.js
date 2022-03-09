@@ -3,6 +3,10 @@ import {
   PAGE_LOAD_SUCCESS,
   PAGE_LOAD_FAIL,
 
+  MYCOURSE_LOAD_REQUEST,
+  MYCOURSE_LOAD_SUCCESS,
+  MYCOURSE_LOAD_FAIL,
+
   COURSE_DETAIL_REQUEST,
   COURSE_DETAIL_SUCCESS,
   COURSE_DETAIL_FAIL,
@@ -34,6 +38,22 @@ export const pageLoadReducer = (state = { courses: {} }, action) => {
   }
 };
 
+export const myCourseLoadReducer = (state = { myCourses: {} }, action) => {
+  switch (action.type) {
+    case MYCOURSE_LOAD_REQUEST:
+      return { loading: true, ...state };
+
+    case MYCOURSE_LOAD_SUCCESS:
+      console.log(action.payload);
+      return { loading: false, myCourses: action.payload };
+
+    case MYCOURSE_LOAD_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
 
 export const courseDetailReducer = (state = { courseData: {} }, action) => {
   switch (action.type) {

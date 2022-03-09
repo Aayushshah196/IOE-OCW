@@ -4,6 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import {
   pageLoadReducer,
+  myCourseLoadReducer,
   courseDetailReducer,
   userLoginReducer,
   courseEnrollmentReducer,
@@ -11,6 +12,7 @@ import {
 
 const reducer = combineReducers({
   pageLoad: pageLoadReducer,
+  myCourseLoad: myCourseLoadReducer,
   courseDetail: courseDetailReducer,
   userLogin: userLoginReducer,
   courseEnroll: courseEnrollmentReducer,

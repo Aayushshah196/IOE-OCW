@@ -19,7 +19,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { CourseDetailAction, CourseEnrollAction } from "../../actions/pageActions";
 import Loader from '../../components/Loader';
 
@@ -113,6 +113,7 @@ const social = ["GitHub", "Twitter", "Facebook"];
 
 function CourseDetails(props) {
   
+  let navigate = useNavigate();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const courseEnroll = useSelector((state) => state.courseEnroll);
@@ -128,13 +129,12 @@ function CourseDetails(props) {
 
   const onEnroll = () => {
 
-    // const { userInfo } = userLogin;
-    // console.log(userLogin);
     if (!userInfo?.access) {
-      window.location.assign('/account/signin');
+      navigate('/account/signin');
     }
     else{
       dispatch(CourseEnrollAction(userInfo.id, courseData.id));
+      // navigate(`/course/${userInfo.id}/${courseData.id}`);
     }
   }
 

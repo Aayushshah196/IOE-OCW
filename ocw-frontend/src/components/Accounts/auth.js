@@ -41,7 +41,6 @@ async function signin(body){
 }
 
 async function signup(body){
-   alert(body.get('dob'));
     var a=await axios.post(`${process.env.REACT_APP_URL}/auth/users/`,body)
             .then((res)=>console.log(res.data))
             .then((res)=>signin({email:body.get('email'),password:body.get('password')}))

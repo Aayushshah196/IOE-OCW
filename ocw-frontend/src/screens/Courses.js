@@ -10,6 +10,7 @@ import mockData from '../mocks/courses';
 export default function Courses({courses}) {
     const theme = useTheme();
     return (
+    <div style={{padding:'2%'}}>
       <Grid
           container
           spacing={2}
@@ -19,14 +20,13 @@ export default function Courses({courses}) {
       >
       {mockData && 
           mockData.map(course => 
-            
-      <Grid item xs={12} sm={4} md={3}>
-              <CourseCard course={course} key={course.key} />
-      </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+                    <CourseCard course={course} key={course.key} />
+            </Grid>
           )
       }
-
       </Grid>
+      </div>
     )
 }
 
