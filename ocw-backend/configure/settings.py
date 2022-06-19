@@ -175,8 +175,8 @@ AUTH_USER_MODEL = 'ocw.UserAccount'
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT =   587
-EMAIL_HOST_USER="ioeocw@gmail.com"
-EMAIL_HOST_PASSWORD='edkslomuibhkkajk'
+EMAIL_HOST_USER="youremail@gmail.com"
+EMAIL_HOST_PASSWORD='yourhostpassword'
 EMAIL_USE_TLS=True
 
 #for the file upload
